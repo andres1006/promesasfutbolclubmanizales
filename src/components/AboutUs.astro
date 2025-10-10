@@ -1,0 +1,121 @@
+---
+// About Us Section - Sobre Nosotros
+---
+
+<section id="nosotros" class="py-20 bg-pfc-gray-light">
+  <div class="container mx-auto px-4">
+    <!-- Título de la sección -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-pfc-black mb-4">
+        Más que un equipo, una <span class="text-pfc-red">familia</span>
+      </h2>
+      <div class="w-24 h-1 bg-pfc-red mx-auto"></div>
+    </div>
+    
+    <!-- Contenido en dos columnas -->
+    <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+      <!-- Columna Izquierda: Imagen -->
+      <div class="relative group">
+        <div class="overflow-hidden rounded-2xl shadow-2xl">
+          <img 
+            src="https://images.unsplash.com/photo-1529676468696-638a37f6e5e8?q=80&w=2400&auto=format&fit=crop" 
+            alt="Entrenador con niños"
+            class="w-full h-[500px] object-cover transform group-hover:scale-110 transition-transform duration-500"
+          />
+        </div>
+        <!-- Decoración -->
+        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-pfc-red rounded-full opacity-20 -z-10"></div>
+        <div class="absolute -top-6 -left-6 w-24 h-24 bg-pfc-black rounded-full opacity-20 -z-10"></div>
+      </div>
+      
+      <!-- Columna Derecha: Puntos Clave -->
+      <div class="space-y-8">
+        <!-- Punto 1: Formación Integral -->
+        <div class="flex gap-6 items-start group">
+          <div class="flex-shrink-0 w-16 h-16 bg-pfc-red rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-pfc-black mb-2">Formación Integral</h3>
+            <p class="text-pfc-gray leading-relaxed">
+              Desarrollamos habilidades técnicas y tácticas, pero también fomentamos valores como la disciplina, 
+              el respeto y el trabajo en equipo.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Punto 2: Metodología Divertida -->
+        <div class="flex gap-6 items-start group">
+          <div class="flex-shrink-0 w-16 h-16 bg-pfc-red rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-pfc-black mb-2">Metodología Divertida</h3>
+            <p class="text-pfc-gray leading-relaxed">
+              Creemos que el amor por el deporte nace del disfrute. Nuestras clases son dinámicas, 
+              seguras y adaptadas a cada edad.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Punto 3: Potencial sin Límites -->
+        <div class="flex gap-6 items-start group">
+          <div class="flex-shrink-0 w-16 h-16 bg-pfc-red rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-pfc-black mb-2">Potencial sin Límites</h3>
+            <p class="text-pfc-gray leading-relaxed">
+              Preparamos a cada niño para que alcance su máximo potencial, dentro y fuera de la cancha.
+            </p>
+          </div>
+        </div>
+        
+        <!-- CTA adicional -->
+        <div class="pt-6">
+          <a 
+            href="https://wa.me/573025150090?text=Hola,%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Promesas%20F%C3%BAtbol%20Club." 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-pfc-red font-semibold text-lg hover:gap-4 transition-all"
+          >
+            Conoce más sobre nosotros
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animación al hacer scroll
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('slide-in-left');
+      }
+    });
+  }, observerOptions);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const aboutSection = document.querySelector('#nosotros');
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+  });
+</script>
+

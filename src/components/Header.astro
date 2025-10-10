@@ -1,0 +1,110 @@
+---
+// Header Component - Navegación principal
+---
+
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#inicio" class="flex items-center space-x-2 z-50">
+      <div class="bg-pfc-red rounded-full w-12 h-12 flex items-center justify-center font-bold text-white text-xl">
+        PFC
+      </div>
+      <span class="font-bold text-xl text-white hidden md:block">
+        Promesas FC
+      </span>
+    </a>
+    
+    <!-- Menú Desktop -->
+    <ul class="hidden lg:flex items-center space-x-8 text-white font-medium">
+      <li><a href="#inicio" class="hover:text-pfc-red transition-colors">Inicio</a></li>
+      <li><a href="#nosotros" class="hover:text-pfc-red transition-colors">Nosotros</a></li>
+      <li><a href="#categorias" class="hover:text-pfc-red transition-colors">Categorías</a></li>
+      <li><a href="#galeria" class="hover:text-pfc-red transition-colors">Galería</a></li>
+      <li><a href="#contacto" class="hover:text-pfc-red transition-colors">Contacto</a></li>
+    </ul>
+    
+    <!-- Botón CTA Desktop -->
+    <a 
+      href="https://wa.me/573025150090?text=Hola,%20quisiera%20inscribir%20a%20mi%20hijo%20en%20el%20club." 
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hidden lg:block bg-pfc-red text-white px-6 py-3 rounded-full font-semibold hover:bg-red-600 transition-all hover:scale-105 shadow-lg"
+    >
+      ¡Inscríbete Ahora!
+    </a>
+    
+    <!-- Botón Hamburguesa Mobile -->
+    <button 
+      id="menu-toggle" 
+      class="lg:hidden text-white z-50 focus:outline-none"
+      aria-label="Abrir menú"
+    >
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </nav>
+  
+  <!-- Menú Mobile -->
+  <div 
+    id="mobile-menu" 
+    class="lg:hidden fixed inset-0 bg-pfc-black bg-opacity-95 transform translate-x-full transition-transform duration-300 z-40"
+  >
+    <ul class="flex flex-col items-center justify-center h-full space-y-8 text-white text-2xl font-medium">
+      <li><a href="#inicio" class="menu-link hover:text-pfc-red transition-colors">Inicio</a></li>
+      <li><a href="#nosotros" class="menu-link hover:text-pfc-red transition-colors">Nosotros</a></li>
+      <li><a href="#categorias" class="menu-link hover:text-pfc-red transition-colors">Categorías</a></li>
+      <li><a href="#galeria" class="menu-link hover:text-pfc-red transition-colors">Galería</a></li>
+      <li><a href="#contacto" class="menu-link hover:text-pfc-red transition-colors">Contacto</a></li>
+      <li>
+        <a 
+          href="https://wa.me/573025150090?text=Hola,%20quisiera%20inscribir%20a%20mi%20hijo%20en%20el%20club." 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-pfc-red text-white px-8 py-4 rounded-full font-semibold hover:bg-red-600 transition-all inline-block"
+        >
+          ¡Inscríbete Ahora!
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  // Script para el menú móvil y el efecto de scroll del header
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const menuLinks = document.querySelectorAll('.menu-link');
+    
+    // Efecto de scroll en el header
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header?.classList.add('bg-pfc-black', 'bg-opacity-95', 'shadow-lg');
+      } else {
+        header?.classList.remove('bg-pfc-black', 'bg-opacity-95', 'shadow-lg');
+      }
+    });
+    
+    // Toggle menú móvil
+    menuToggle?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('translate-x-full');
+      menuIcon?.classList.toggle('hidden');
+      closeIcon?.classList.toggle('hidden');
+    });
+    
+    // Cerrar menú al hacer click en un link
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.add('translate-x-full');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+      });
+    });
+  });
+</script>
+

@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import AboutUs from '../components/AboutUs.astro';
+import Categories from '../components/Categories.astro';
+import Gallery from '../components/Gallery';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+---
+
+<Layout 
+	title="Promesas Fútbol Club Manizales - Escuela de Fútbol para Niños" 
+	description="Escuela de formación deportiva especializada en niños y niñas de 4 a 12 años en Manizales. Formando campeones para la cancha y para la vida. ¡Inscríbete ahora!"
+>
+	<Header />
+	<main>
+		<Hero />
+		<AboutUs />
+		<Categories />
+		<Gallery client:load />
+		<FinalCTA />
+		<Footer />
+	</main>
+	<WhatsAppButton />
+</Layout>
+
