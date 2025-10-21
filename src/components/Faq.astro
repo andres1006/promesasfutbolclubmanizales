@@ -1,0 +1,71 @@
+---
+// FAQ Section - Preguntas frecuentes
+---
+
+<section id="faq" class="py-20 bg-pfc-gray-light">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-pfc-black mb-4">
+        Resolvemos tus <span class="text-pfc-red">dudas frecuentes</span>
+      </h2>
+      <p class="text-lg text-pfc-gray">
+        Información clave sobre procesos de inscripción, uniformes, niveles y políticas de seguridad para las familias nuevas.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto space-y-4">
+      {[{
+        question: '¿Cuánto cuesta la mensualidad y qué incluye?',
+        answer:
+          'La inversión mensual inicia en $150.000 COP e incluye 3 entrenamientos semanales, seguro deportivo, seguimiento técnico personalizado y acceso a torneos internos.'
+      },
+      {
+        question: '¿Puedo agendar una clase de prueba antes de matricularme?',
+        answer:
+          'Sí. La primera sesión de evaluación es gratuita y permite conocer al grupo, a los entrenadores y la metodología. Solo debes agendarla con mínimo 24 horas de antelación.'
+      },
+      {
+        question: '¿Qué uniformes o implementos necesitan los niños?',
+        answer:
+          'El kit oficial incluye camiseta, pantaloneta y medias. También recomendamos guayos multitaco y canilleras. Tenemos aliados comerciales con precios especiales.'
+      },
+      {
+        question: '¿Cómo garantizan la seguridad y el bienestar de los niños?',
+        answer:
+          'Contamos con protocolos de bioseguridad, acompañamiento de fisioterapeuta aliado, control de asistencia y comunicación constante con los acudientes vía app y WhatsApp.'
+      },
+      {
+        question: '¿Hay descuentos para hermanos o convenios empresariales?',
+        answer:
+          'Sí. Ofrecemos descuentos del 10 % para hermanos y acuerdos preferenciales con empresas y colegios aliados de Manizales.'
+      }].map(({ question, answer }, index) => (
+        <details
+          key={question}
+          class="group bg-white rounded-3xl shadow-md overflow-hidden transition-all"
+          open={index === 0}
+        >
+          <summary class="flex items-center justify-between gap-6 cursor-pointer px-6 py-5 font-semibold text-pfc-black text-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-pfc-red/50">
+            <span>{question}</span>
+            <span class="flex-shrink-0 text-pfc-red group-open:rotate-45 transition-transform text-2xl" aria-hidden="true">+</span>
+          </summary>
+          <div class="px-6 pb-6 text-pfc-gray leading-relaxed">
+            {answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-sm text-pfc-gray mb-3">¿No encontraste la respuesta que buscabas?</p>
+      <a
+        href="mailto:promesasfcmanizales@gmail.com?subject=Consulta%20Promesas%20F%C3%BAtbol%20Club"
+        class="inline-flex items-center gap-2 text-pfc-red font-semibold hover:gap-3 transition-all"
+      >
+        Escríbenos y te respondemos en menos de 12 horas
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

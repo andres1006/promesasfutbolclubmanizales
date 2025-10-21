@@ -1,0 +1,83 @@
+---
+// Testimonials Section - Señales de confianza social
+---
+
+<section id="testimonios" class="py-20 bg-pfc-gray-light">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-14 max-w-3xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-pfc-black mb-4">
+        Familias que ya viven la <span class="text-pfc-red">experiencia PFC</span>
+      </h2>
+      <p class="text-lg text-pfc-gray">
+        Historias reales de niños y niñas que han transformado su juego y su confianza en nuestra escuela de fútbol.
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-3">
+      {[
+        {
+          name: 'Laura Gómez',
+          role: 'Mamá de Matías (7 años)',
+          testimonial:
+            'Matías pasó de ser tímido a liderar su equipo. Los profes motivan con cariño y nos mantienen informados cada semana.',
+          rating: 5
+        },
+        {
+          name: 'Andrés Castaño',
+          role: 'Papá de Sara (10 años)',
+          testimonial:
+            'Nos encantan los retos técnicos y los talleres de nutrición. Sara ahora quiere entrenar incluso los domingos.',
+          rating: 5
+        },
+        {
+          name: 'Marcela López',
+          role: 'Mamá de Samuel (5 años)',
+          testimonial:
+            'El proceso de iniciación es muy lúdico. Samuel aprendió a compartir y a seguir indicaciones sin perder la sonrisa.',
+          rating: 5
+        }
+      ].map(({ name, role, testimonial, rating }) => (
+        <article class="bg-white rounded-3xl shadow-xl p-8 h-full flex flex-col" aria-label={`Testimonio de ${name}`}>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-full bg-pfc-red text-white flex items-center justify-center font-bold text-lg">
+              {name.split(' ')[0][0]}
+            </div>
+            <div>
+              <p class="font-semibold text-pfc-black">{name}</p>
+              <p class="text-sm text-pfc-gray">{role}</p>
+            </div>
+          </div>
+          <p class="text-pfc-gray flex-1 leading-relaxed">“{testimonial}”</p>
+          <div class="mt-6 flex items-center gap-1" aria-label={`${rating} de 5 estrellas`}>
+            {Array.from({ length: rating }).map(() => (
+              <svg class="w-5 h-5 text-pfc-red" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-12 bg-white/80 backdrop-blur-sm border border-pfc-gray/20 rounded-3xl p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <p class="text-pfc-red font-semibold uppercase tracking-widest text-sm">Resultados medibles</p>
+        <h3 class="text-2xl font-bold text-pfc-black mt-2">+92% de satisfacción en encuestas trimestrales</h3>
+        <p class="text-pfc-gray mt-2">
+          Integramos evaluaciones técnicas y reportes personalizados para que las familias sigan el progreso de sus hijos en cada ciclo.
+        </p>
+      </div>
+      <a
+        href="https://wa.me/573025150090?text=Hola,%20quiero%20escuchar%20testimonios%20de%20otras%20familias."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-4 bg-pfc-red text-white font-semibold rounded-full hover:bg-red-600 transition-all"
+      >
+        Hablar con un asesor
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

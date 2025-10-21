@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Galería de imágenes con React
 interface GalleryImage {
@@ -58,19 +58,32 @@ const images: GalleryImage[] = [
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleChange = (event: MediaQueryListEvent | MediaQueryList) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    handleChange(mediaQuery);
+
+    const listener = (event: MediaQueryListEvent) => handleChange(event);
+    mediaQuery.addEventListener('change', listener);
+
+    return () => {
+      mediaQuery.removeEventListener('change', listener);
+    };
+  }, []);
 
   const openLightbox = (image: GalleryImage) => {
     setSelectedImage(image);
     setIsOpen(true);
-    // Prevenir scroll del body
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setIsOpen(false);
     setSelectedImage(null);
-    // Restaurar scroll del body
-    document.body.style.overflow = 'auto';
   };
 
   const navigateImage = (direction: 'prev' | 'next') => {
@@ -88,6 +101,36 @@ export default function Gallery() {
     setSelectedImage(images[newIndex]);
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+
+      if (event.key === 'ArrowRight') {
+        navigateImage('next');
+      }
+
+      if (event.key === 'ArrowLeft') {
+        navigateImage('prev');
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, selectedImage]);
+
   return (
     <section id="galeria" className="py-20 bg-pfc-black">
       <div className="container mx-auto px-4">
@@ -104,38 +147,46 @@ export default function Gallery() {
 
         {/* Grid de imágenes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {images.map((image, index) => (
-            <div
-              key={image.id}
-              className="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer aspect-square"
-              onClick={() => openLightbox(image)}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                opacity: 0,
-                animation: 'fadeIn 0.6s ease-out forwards'
-              }}
-            >
-              <img
-                src={image.url}
-                alt={image.alt}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-pfc-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold">{image.alt}</p>
+          {images.map((image, index) => {
+            const animationStyles = prefersReducedMotion
+              ? undefined
+              : {
+                  animationDelay: `${index * 0.1}s`,
+                  opacity: 0,
+                  animation: 'fadeIn 0.6s ease-out forwards'
+                } as const;
+
+            return (
+              <button
+                type="button"
+                key={image.id}
+                className="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer aspect-square focus:outline-none focus-visible:ring-4 focus-visible:ring-pfc-red/60"
+                onClick={() => openLightbox(image)}
+                style={animationStyles}
+                aria-label={`Ver imagen: ${image.alt}`}
+              >
+                <img
+                  src={image.url}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-pfc-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-white font-semibold">{image.alt}</p>
+                  </div>
                 </div>
-              </div>
-              {/* Ícono de zoom */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-pfc-red rounded-full p-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
-                  </svg>
+                {/* Ícono de zoom */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-pfc-red rounded-full p-4">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </button>
+            );
+          })}
         </div>
 
         {/* Lightbox Modal */}

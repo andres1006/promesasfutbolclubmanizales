@@ -6,7 +6,7 @@
   href="https://wa.me/573025150090"
   target="_blank"
   rel="noopener noreferrer"
-  class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-2xl transition-all hover:scale-110 group"
+  class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-2xl transition-all hover:scale-110 group opacity-0 pointer-events-none translate-y-4"
   aria-label="Contactar por WhatsApp"
   id="whatsapp-button"
 >
@@ -59,10 +59,22 @@
   // Efecto de aparición suave del botón
   document.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById('whatsapp-button');
-    
-    setTimeout(() => {
-      button?.classList.add('fade-in');
-    }, 1000);
+    let hasAppeared = false;
+
+    const showButton = () => {
+      if (hasAppeared || !button) return;
+      button.classList.add('fade-in');
+      button.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      hasAppeared = true;
+    };
+
+    setTimeout(showButton, 1800);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 240) {
+        showButton();
+      }
+    });
   });
 </script>
 
