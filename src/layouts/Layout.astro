@@ -160,10 +160,22 @@ const structuredData = {
 				animation: slideInLeft 0.8s ease-out forwards;
 			}
 			
-			.slide-in-right {
-				animation: slideInRight 0.8s ease-out forwards;
-			}
-		</style>
-	</body>
+                        .slide-in-right {
+                                animation: slideInRight 0.8s ease-out forwards;
+                        }
+
+                        @media (prefers-reduced-motion: reduce) {
+                                html {
+                                        scroll-behavior: auto;
+                                }
+
+                                .fade-in,
+                                .slide-in-left,
+                                .slide-in-right {
+                                        animation: none !important;
+                                }
+                        }
+                </style>
+        </body>
 </html>
 

@@ -39,7 +39,7 @@
   .animate-ping {
     animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
-  
+
   /* Hacer el botón más pequeño en móviles */
   @media (max-width: 640px) {
     #whatsapp-button {
@@ -51,6 +51,12 @@
     #whatsapp-button svg {
       width: 1.75rem;
       height: 1.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-ping {
+      animation: none;
     }
   }
 </style>
