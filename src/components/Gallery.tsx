@@ -10,50 +10,62 @@ interface GalleryImage {
 const images: GalleryImage[] = [
   {
     id: 1,
-    url: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1600&auto=format&fit=crop',
     alt: 'Niños celebrando un gol'
   },
   {
     id: 2,
-    url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1600&auto=format&fit=crop',
     alt: 'Entrenamiento de equipo'
   },
   {
     id: 3,
-    url: 'https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?q=80&w=1600&auto=format&fit=crop',
     alt: 'Compañerismo entre jugadores'
   },
   {
     id: 4,
-    url: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?q=80&w=1600&auto=format&fit=crop',
     alt: 'Partido juvenil'
   },
   {
     id: 5,
-    url: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1600&auto=format&fit=crop',
     alt: 'Ejercicios de habilidad'
   },
   {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1489944440615-453fc2b866a9?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1489944440615-453fc2b866a9?q=80&w=1600&auto=format&fit=crop',
     alt: 'Alegría del fútbol infantil'
   },
   {
     id: 7,
-    url: 'https://images.unsplash.com/photo-1624880357913-a8539238245b?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1624880357913-a8539238245b?q=80&w=1600&auto=format&fit=crop',
     alt: 'Entrenamiento táctico'
   },
   {
     id: 8,
-    url: 'https://images.unsplash.com/photo-1542766788-a2f588e447ee?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1542766788-a2f588e447ee?q=80&w=1600&auto=format&fit=crop',
     alt: 'Momento de equipo'
   },
   {
     id: 9,
-    url: 'https://images.unsplash.com/photo-1577223625816-7546f8d0d117?q=80&w=2400&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1577223625816-7546f8d0d117?q=80&w=1600&auto=format&fit=crop',
     alt: 'Celebración del equipo'
   }
 ];
+
+const buildSrcSet = (url: string) => {
+  if (!url.includes('w=1600')) {
+    return undefined;
+  }
+
+  return [
+    url.replace('w=1600', 'w=600') + ' 600w',
+    url.replace('w=1600', 'w=900') + ' 900w',
+    url + ' 1600w'
+  ].join(', ');
+};
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
@@ -167,6 +179,8 @@ export default function Gallery() {
               >
                 <img
                   src={image.url}
+                  srcSet={buildSrcSet(image.url)}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 90vw"
                   alt={image.alt}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"

@@ -123,19 +123,32 @@
     rootMargin: '0px 0px -100px 0px'
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('slide-in-left');
-      }
-    });
-  }, observerOptions);
-
   document.addEventListener('DOMContentLoaded', () => {
     const aboutSection = document.querySelector('#nosotros');
-    if (aboutSection) {
-      observer.observe(aboutSection);
+    if (!aboutSection) {
+      return;
     }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReducedMotion.matches) {
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-in-left');
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(aboutSection);
+
+    prefersReducedMotion.addEventListener('change', event => {
+      if (event.matches) {
+        observer.disconnect();
+      }
+    });
   });
 </script>
 
