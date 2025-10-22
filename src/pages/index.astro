@@ -8,6 +8,9 @@ import Gallery from '../components/Gallery';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import Testimonials from '../components/Testimonials.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Faq from '../components/Faq.astro';
 ---
 
 <Layout 
@@ -16,12 +19,15 @@ import WhatsAppButton from '../components/WhatsAppButton.astro';
 >
 	<Header />
 	<main>
-		<Hero />
-		<AboutUs />
-		<Categories />
-		<Gallery client:load />
-		<FinalCTA />
-		<Footer />
+                <Hero />
+                <AboutUs />
+                <Categories />
+                <Testimonials />
+                <ContactSection />
+                <Faq />
+                <Gallery client:visible />
+                <FinalCTA />
+                <Footer />
 	</main>
 	<WhatsAppButton />
 </Layout>

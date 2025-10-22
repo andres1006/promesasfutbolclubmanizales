@@ -17,17 +17,21 @@
       <!-- Columna Izquierda: Imagen -->
       <div class="relative group">
         <div class="overflow-hidden rounded-2xl shadow-2xl">
-          <img 
-            src="https://images.unsplash.com/photo-1529676468696-638a37f6e5e8?q=80&w=2400&auto=format&fit=crop" 
-            alt="Entrenador con niños"
+          <img
+            src="https://images.unsplash.com/photo-1529676468696-638a37f6e5e8?auto=format&fit=crop&w=1400&q=80"
+            srcset="https://images.unsplash.com/photo-1529676468696-638a37f6e5e8?auto=format&fit=crop&w=1400&q=80 1400w, https://images.unsplash.com/photo-1529676468696-638a37f6e5e8?auto=format&fit=crop&w=900&q=80 900w, https://images.unsplash.com/photo-1529676468696-638a37f6e5e8?auto=format&fit=crop&w=600&q=80 600w"
+            sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 90vw"
+            alt="Entrenador celebrando con niños del club"
             class="w-full h-[500px] object-cover transform group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <!-- Decoración -->
         <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-pfc-red rounded-full opacity-20 -z-10"></div>
         <div class="absolute -top-6 -left-6 w-24 h-24 bg-pfc-black rounded-full opacity-20 -z-10"></div>
       </div>
-      
+
       <!-- Columna Derecha: Puntos Clave -->
       <div class="space-y-8">
         <!-- Punto 1: Formación Integral -->
@@ -76,11 +80,27 @@
             </p>
           </div>
         </div>
-        
+
+        <!-- Métricas de confianza -->
+        <div class="grid sm:grid-cols-3 gap-4 pt-6">
+          <div class="bg-white rounded-2xl shadow-md p-6 text-center">
+            <p class="text-3xl font-bold text-pfc-red">+120</p>
+            <p class="text-sm text-pfc-gray">Familias activas en 2024</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-md p-6 text-center">
+            <p class="text-3xl font-bold text-pfc-red">12</p>
+            <p class="text-sm text-pfc-gray">Entrenadores certificados</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-md p-6 text-center">
+            <p class="text-3xl font-bold text-pfc-red">8</p>
+            <p class="text-sm text-pfc-gray">Torneos locales ganados</p>
+          </div>
+        </div>
+
         <!-- CTA adicional -->
         <div class="pt-6">
-          <a 
-            href="https://wa.me/573025150090?text=Hola,%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Promesas%20F%C3%BAtbol%20Club." 
+          <a
+            href="https://wa.me/573025150090?text=Hola,%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Promesas%20F%C3%BAtbol%20Club."
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-pfc-red font-semibold text-lg hover:gap-4 transition-all"
@@ -103,19 +123,32 @@
     rootMargin: '0px 0px -100px 0px'
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('slide-in-left');
-      }
-    });
-  }, observerOptions);
-
   document.addEventListener('DOMContentLoaded', () => {
     const aboutSection = document.querySelector('#nosotros');
-    if (aboutSection) {
-      observer.observe(aboutSection);
+    if (!aboutSection) {
+      return;
     }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReducedMotion.matches) {
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-in-left');
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(aboutSection);
+
+    prefersReducedMotion.addEventListener('change', event => {
+      if (event.matches) {
+        observer.disconnect();
+      }
+    });
   });
 </script>
 
