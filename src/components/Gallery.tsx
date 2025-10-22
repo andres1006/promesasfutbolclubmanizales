@@ -41,52 +41,98 @@ interface GalleryImage {
 const images: GalleryImage[] = [
   {
     id: 1,
-    url: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Niños celebrando un gol'
+    url: '/fotos/7.jpeg',
+    alt: 'Entrenamiento de Promesas FC Manizales'
   },
   {
     id: 2,
-    url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Entrenamiento de equipo'
+    url: '/fotos/3.jpeg',
+    alt: 'Jugadores de Promesas FC en acción'
   },
   {
     id: 3,
-    url: 'https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Compañerismo entre jugadores'
+    url: '/fotos/3.jpeg',
+    alt: 'Momento especial del equipo'
   },
   {
     id: 4,
-    url: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Partido juvenil'
+    url: '/fotos/4.jpeg',
+    alt: 'Entrenamiento técnico'
   },
   {
     id: 5,
-    url: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Ejercicios de habilidad'
+    url: '/fotos/5.jpeg',
+    alt: 'Compañerismo en Promesas FC'
   },
   {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1489944440615-453fc2b866a9?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Alegría del fútbol infantil'
+    url: '/fotos/6.jpeg',
+    alt: 'Celebración del equipo'
   },
   {
     id: 7,
-    url: 'https://images.unsplash.com/photo-1624880357913-a8539238245b?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Entrenamiento táctico'
+    url: '/fotos/7.jpeg',
+    alt: 'Entrenamiento grupal'
   },
   {
     id: 8,
-    url: 'https://images.unsplash.com/photo-1542766788-a2f588e447ee?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Momento de equipo'
+    url: '/fotos/8.jpeg',
+    alt: 'Jugadores concentrados'
   },
   {
     id: 9,
-    url: 'https://images.unsplash.com/photo-1577223625816-7546f8d0d117?q=80&w=1600&auto=format&fit=crop',
-    alt: 'Celebración del equipo'
+    url: '/fotos/9.jpeg',
+    alt: 'Momento de diversión y aprendizaje'
+  },
+  {
+    id: 10,
+    url: '/fotos/10.jpeg',
+    alt: 'Entrenamiento de habilidades'
+  },
+  {
+    id: 11,
+    url: '/fotos/11.jpeg',
+    alt: 'Equipo de Promesas FC Manizales'
+  },
+  {
+    id: 12,
+    url: '/fotos/12.jpeg',
+    alt: 'Jugadores en formación'
+  },
+  {
+    id: 13,
+    url: '/fotos/13.jpeg',
+    alt: 'Entrenamiento dinámico'
+  },
+  {
+    id: 14,
+    url: '/fotos/14.jpeg',
+    alt: 'Momento de equipo'
+  },
+  {
+    id: 15,
+    url: '/fotos/15.jpeg',
+    alt: 'Jugadores de Promesas FC'
+  },
+  {
+    id: 16,
+    url: '/fotos/16.jpeg',
+    alt: 'Entrenamiento especializado'
+  },
+  {
+    id: 17,
+    url: '/fotos/17.jpeg',
+    alt: 'Familia Promesas FC'
   }
 ];
 
 const buildSrcSet = (url: string) => {
+  // Para imágenes locales, no necesitamos srcSet
+  if (url.startsWith('/fotos/')) {
+    return undefined;
+  }
+  
+  // Mantener compatibilidad con Unsplash si es necesario
   if (!url.includes('w=1600')) {
     return undefined;
   }
@@ -357,7 +403,7 @@ export default function Gallery() {
           };
         }
 
-        animations.push(window.gsap.fromTo(card, fromVars, toVars));
+        animations.push(window.gsap!.fromTo(card, fromVars, toVars));
       });
 
       animationsRef.current = animations;
@@ -445,7 +491,7 @@ export default function Gallery() {
       className="relative overflow-hidden py-20 bg-pfc-black"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ '--glow-x': '0px', '--glow-y': '0px' }}
+      style={{ '--glow-x': '0px', '--glow-y': '0px' } as React.CSSProperties}
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div
